@@ -167,7 +167,11 @@
     }
 
     ul.ul-papers > li {
-      padding: 26px 0 28px 0;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      align-items: start;
+      column-gap: 22px;
+      padding: 28px 0;
       border-bottom: 1px solid #e5e7eb;
     }
 
@@ -176,8 +180,10 @@
     }
 
     ul.ul-papers li .img {
+      display: block;
       max-width: 220px;
-      padding-right: 18px;
+      width: 220px;
+      padding-right: 0;
     }
 
     ul.ul-papers li .img img {
@@ -186,6 +192,12 @@
       border: 1px solid #e5e7eb;
       object-fit: cover;
       background: #fff;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+
+    ul.ul-papers li .description {
+      display: block;
+      min-width: 0;
     }
 
     ul.ul-papers li .description p {
@@ -194,26 +206,43 @@
     }
 
     ul.ul-papers li .description p.title {
-      font-size: 1.1rem;
-      line-height: 1.45;
+      font-size: 1.15rem;
+      line-height: 1.4;
       color: #111827;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     ul.ul-papers li .description p.authors {
       color: #4b5563;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      line-height: 1.65;
     }
 
     ul.ul-papers li .description p.venue {
-      color: #111827;
+      color: #6b7280;
       font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
     }
 
     ul.ul-papers li .description a {
-      margin-right: 10px;
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      background: #f9fafb;
+      color: #374151;
+      font-size: 0.88rem;
+      font-weight: 500;
       white-space: nowrap;
+    }
+
+    ul.ul-papers li .description a:hover {
+      background: #f3f4f6;
+      color: #111827;
+      text-decoration: none;
     }
 
     #activities ul,
@@ -241,9 +270,14 @@
       }
 
       ul.ul-papers li .img {
+        width: 100%;
         max-width: 100%;
-        padding-right: 0;
         margin-bottom: 14px;
+      }
+
+      ul.ul-papers > li {
+        grid-template-columns: 1fr;
+        row-gap: 0;
       }
     }
   </style>
