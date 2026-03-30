@@ -56,6 +56,198 @@
 </script>
   <title>Youngju Na</title>
 
+  <style>
+    body {
+      color: #1f2937;
+      background: #ffffff;
+    }
+
+    .container {
+      max-width: 1080px;
+    }
+
+    #navbar-main {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+    }
+
+    .navbar .navbar-brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #4b5563 !important;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+      color: #111827 !important;
+    }
+
+    .home-section {
+      padding: 56px 0 !important;
+      background: #ffffff !important;
+    }
+
+    .home-section:first-of-type {
+      padding-top: 64px !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    .navbar-brand {
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    #profile {
+      padding: 8px 20px 0 0;
+    }
+
+    .avatar {
+      width: 184px;
+      height: 184px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .portrait-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .portrait-title h3 {
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .profile-links {
+      margin-top: 16px;
+      line-height: 1.9;
+    }
+
+    .profile-links a {
+      color: #111827;
+    }
+
+    .wg-about p {
+      line-height: 1.9;
+      color: #374151;
+    }
+
+    .ul-contact li,
+    .ul-edu li {
+      margin-bottom: 10px;
+    }
+
+    .ul-contact .description p,
+    .ul-edu .description p {
+      color: #4b5563;
+    }
+
+    .ul-edu li .description p.institution {
+      color: #6b7280;
+    }
+
+    ul.ul-papers {
+      margin-top: 8px;
+      padding-left: 0;
+    }
+
+    ul.ul-papers > li {
+      padding: 26px 0 28px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    ul.ul-papers > li:first-of-type {
+      border-top: 1px solid #e5e7eb;
+    }
+
+    ul.ul-papers li .img {
+      max-width: 220px;
+      padding-right: 18px;
+    }
+
+    ul.ul-papers li .img img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    ul.ul-papers li .description p {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    ul.ul-papers li .description p.title {
+      font-size: 1.1rem;
+      line-height: 1.45;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    ul.ul-papers li .description p.authors {
+      color: #4b5563;
+      margin-bottom: 5px;
+    }
+
+    ul.ul-papers li .description p.venue {
+      color: #111827;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    ul.ul-papers li .description a {
+      margin-right: 10px;
+      white-space: nowrap;
+    }
+
+    #activities ul,
+    #teachinig_experiences ul,
+    #awards ul {
+      padding-left: 1.1rem;
+      color: #374151;
+      line-height: 1.9;
+    }
+
+    #activities h1,
+    #teachinig_experiences h1,
+    #awards h1 {
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .home-section {
+        padding: 40px 0 !important;
+      }
+
+      #profile {
+        padding-right: 0;
+        margin-bottom: 24px;
+      }
+
+      ul.ul-papers li .img {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 14px;
+      }
+    }
+  </style>
+
 </head>
 
 <body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main">
@@ -158,25 +350,20 @@
                 </a>
               </h3>
             </div>
-
-
-            <td>
-              <br>
+            <div class="profile-links">
               <a href="resources/cv.pdf"><b>CV</b></a>
               | <a href="https://scholar.google.com/citations?user=HV3DYUcAAAAJ&hl=en"><b>Google Scholar</b></a>
               | <a href="https://github.com/Youngju-Na"><b>GitHub</b></a>
-              <br>
-              <br>
-            </td>
+            </div>
           </div>
         </div>
         <div class="col-12 col-lg-8">
 
           <br>
-          <p>I am a first-year Ph.D. student in <a href="https://sgvr.kaist.ac.kr">Scalable Graphics, Vision, and
+          <p>I am a second-year Ph.D. student in <a href="https://sgvr.kaist.ac.kr">Scalable Graphics, Vision, and
               Robotics (SGVR) Lab</a> at <a href="https://kaist.ac.kr/">KAIST</a>, advised by <a
               href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>.
-            Last Summer, I was fortunate to visit <a href="https://www.naverlabs.com/">LAVER LABS</a> Spatial AI team as
+            Last Summer, I was fortunate to visit <a href="https://www.naverlabs.com/">NAVER LABS</a> Spatial AI team as
             a research intern.
             The goal of my research is to empower AI with spatial understanding by reconstructing, generating, and
             interacting within 3D scenes.
@@ -255,21 +442,46 @@
           <ul class="ul-papers">
             * Full publication list (including domestic publications) is available in my <a
               href="resources/cv.pdf">CV</a>.
+            
+            <li>
+              <div class="img">
+                <img src="/resources/paper/glint.png" class="img-responsive" alt="">
+              </div>
+              <div class="description">
+                <p class="title">GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transport</p>
+                <p class="authors"><b>Youngju Na</b>, Jaeseong Yun, Soohyun Ryu, Hyunsu Kim, Sung-Eui Yoon, and Suyong
+                  Yeon<br /></p>
+                <p class="venue">CVPR 2026<br>
+                <p class="resources"></p>
+                <a href="https://youngju-na.github.io/GLINT/">[Project]</a>
+                <a href="https://arxiv.org/abs/2603.26181">[Paper]</a> 
+                <a href="https://github.com/youngju-na/GLINT">[Code]</a>                   
+            <li>
+              <div class="img">
+                <img src="/resources/paper/vrrt.png" class="img-responsive" alt="">
+              </div>
+              <div class="description">
+                <p class="title">Visual-RRT: Finding Paths toward Visual-Goals via Differentiable Rendering</p>
+                <p class="authors"> Sebin Lee*, Jumin Lee*, Taeyeon Kim, <b>Youngju Na</b>, Woobin Im, and Sung-Eui
+                  Yoon<br /></p>
+                <p class="venue">CVPR 2026<br>
+                <p class="resources"></p>
+                <a href="https://sgvr.kaist.ac.kr/Visual-RRT/">[Project]</a> <a
+                  href="https://arxiv.org/abs/2403.07773">[Paper]</a>
 
             <li>
               <div class="img">
                 <img src="resources/paper/camo_results_real.gif" class="img-responsive" alt="">
               </div>
               <div class="description">
-                <p class="title">CAMO: Category-Agnostic 3D Motion Transfer from Monocular 2D Videos</p>
-                <p class="authors"> Taeyeon Kim*, <b>Youngju Na*</b>, Jumin Lee, Minhyuk Sung, and Sung-eui Yoon<br />
+                <p class="title">MorphGS: Morphology-Adaptive Articulated 3D Motion Transfer from Videos</p>
+                <p class="authors"> Taeyeon Kim*, <b>Youngju Na*</b>, Jumin Lee, Sebin Lee, Minhyuk Sung, and Sung-eui Yoon<br />
                 </p>
                 <p class="venue">arxiv 2026<br>
                 <p class="resources"></p>
-                <a href="https://camo-project-page.github.io/">[Project]</a> <a
-                  href="https://arxiv.org/abs/2601.02716">[Paper]</a> <a
-                  href="https://github.com/camo-project-page/CAMO">[Code]</a>
-
+                <a href="https://camo-project-page.github.io/">[Project]</a>
+                <a href="https://arxiv.org/abs/2601.02716">[Paper]</a>
+            
             <li>
               <div class="img">
                 <img src="/resources/paper/bmvc25_aegisrf.png" class="img-responsive" alt="">
