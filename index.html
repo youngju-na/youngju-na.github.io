@@ -26,10 +26,10 @@
     integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
 
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
-  <link rel="stylesheet" href="/css/academic.css">
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Youngju Na">
-  <link rel="manifest" href="/index.webmanifest">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/academic.css">
+  <link rel="alternate" href="index.xml" type="application/rss+xml" title="Youngju Na">
+  <link rel="manifest" href="index.webmanifest">
 
   <link rel="canonical" href="/">
   <meta property="twitter:card" content="summary">
@@ -57,268 +57,509 @@
   <title>Youngju Na</title>
 
   <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-muted: #f7f8fa;
+      --text: #111827;
+      --text-soft: #4b5563;
+      --text-muted: #6b7280;
+      --line: #e5e7eb;
+      --line-strong: #d6dbe1;
+      --accent: #315f9e;
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
     body {
-      color: #1f2937;
-      background: #ffffff;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1120px;
     }
 
     #navbar-main {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+      border-bottom: 1px solid var(--line);
+      box-shadow: none;
     }
 
     .navbar .navbar-brand {
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     .navbar-nav .nav-link {
       font-size: 0.95rem;
       font-weight: 500;
-      color: #4b5563 !important;
+      color: var(--text-soft) !important;
+      padding: 0.45rem 0 !important;
+      margin-right: 1.75rem;
+      border-radius: 0;
+      background: transparent !important;
     }
 
     .navbar-nav .nav-link:hover,
     .navbar-nav .nav-link:focus {
-      color: #111827 !important;
+      color: var(--text) !important;
     }
 
     .home-section {
-      padding: 56px 0 !important;
-      background: #ffffff !important;
+      padding: 84px 0 !important;
+      background: transparent !important;
+      animation: none !important;
+      opacity: 1 !important;
     }
 
     .home-section:first-of-type {
-      padding-top: 64px !important;
+      padding-top: 96px !important;
     }
 
-    h1,
-    h2,
-    h3,
+    .home-section + .home-section {
+      border-top: 1px solid #f2f4f7;
+    }
+
+    .home-section h1 {
+      margin: 0 0 1.5rem;
+      font-size: 2.2rem;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .home-section h2,
+    .home-section h3,
     .navbar-brand {
       letter-spacing: -0.03em;
+      color: var(--text);
     }
 
-    h1 {
-      margin-bottom: 1rem;
+    p,
+    li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+    }
+
+    a {
+      color: var(--accent);
+      transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    a:hover {
+      color: #234a7d;
+      text-decoration: none;
+    }
+
+    #about {
+      padding-bottom: 96px !important;
+    }
+
+    .about-layout {
+      align-items: stretch;
     }
 
     #profile {
       padding: 8px 20px 0 0;
+      text-align: left;
+      position: sticky;
+      top: 116px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .avatar {
-      width: 184px;
-      height: 184px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      width: 176px;
+      height: 176px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .avatar-circle {
+      border-radius: 24px;
     }
 
     .portrait-title h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-top: 18px;
-      margin-bottom: 8px;
-      color: #111827;
+      margin: 26px 0 8px;
+      font-size: 2.1rem;
+      line-height: 1.05;
+      font-weight: 800;
+      color: var(--text);
     }
 
     .portrait-title h3 {
+      margin: 0 0 8px;
       font-size: 1rem;
-      color: #6b7280;
-      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-muted);
     }
 
     .profile-links {
-      margin-top: 16px;
-      line-height: 1.9;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
     }
 
     .profile-links a {
-      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 500;
     }
 
-    .wg-about p {
-      line-height: 1.9;
-      color: #374151;
+    .profile-links a:hover {
+      color: var(--accent);
+      border-color: var(--line-strong);
+      background: #fcfcfd;
     }
 
-    .ul-contact li,
-    .ul-edu li {
-      margin-bottom: 10px;
+    .about-main {
+      max-width: 780px;
+      padding-top: 10px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    .ul-contact .description p,
-    .ul-edu .description p {
-      color: #4b5563;
+    .section-label {
+      margin-bottom: 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
-    .ul-edu li .description p.institution {
-      color: #6b7280;
+    .lead {
+      max-width: 760px;
+      margin-bottom: 0;
+      font-size: 1.16rem;
+      line-height: 1.95;
+      color: var(--text);
+    }
+
+    .contact-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 24px;
+      margin-top: auto;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-muted);
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .education-section {
+      max-width: 720px;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .education-section.standalone {
+      max-width: none;
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .education-title {
+      margin-bottom: 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .education-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .education-list li {
+      margin: 0;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .education-list li:first-child {
+      padding-top: 0;
+    }
+
+    .education-list .degree {
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .education-list .meta {
+      margin-bottom: 0.2rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .education-list .note {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    .papers-note {
+      margin: 0 0 2rem;
+      font-size: 1rem;
+      color: var(--text-muted);
     }
 
     ul.ul-papers {
-      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: 0;
       padding-left: 0;
+      list-style: none;
     }
 
     ul.ul-papers > li {
       display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
+      grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
       align-items: start;
-      column-gap: 22px;
-      padding: 28px 0;
-      border-bottom: 1px solid #e5e7eb;
+      column-gap: 32px;
+      min-height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
 
-    ul.ul-papers > li:first-of-type {
-      border-top: 1px solid #e5e7eb;
+    ul.ul-papers > li:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-hover);
     }
 
     ul.ul-papers li .img {
       display: block;
-      max-width: 220px;
-      width: 220px;
+      width: 100%;
+      max-width: 280px;
       padding-right: 0;
     }
 
     ul.ul-papers li .img img {
+      display: block;
       width: 100%;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      object-fit: cover;
-      background: #fff;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      object-fit: contain;
+      object-position: center;
+      background: var(--surface-muted);
+      box-shadow: none;
     }
 
     ul.ul-papers li .description {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       min-width: 0;
     }
 
     ul.ul-papers li .description p {
+      margin: 0;
       padding-left: 0;
       padding-right: 0;
     }
 
     ul.ul-papers li .description p.title {
-      font-size: 1.15rem;
-      line-height: 1.4;
-      color: #111827;
-      margin-bottom: 8px;
+      margin-bottom: 0.75rem;
+      font-size: 1.18rem;
+      line-height: 1.45;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     ul.ul-papers li .description p.authors {
-      color: #4b5563;
-      margin-bottom: 6px;
-      line-height: 1.65;
+      margin-bottom: 0.75rem;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--text-soft);
     }
 
     ul.ul-papers li .description p.venue {
-      color: #6b7280;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 12px;
+      margin-bottom: 1rem;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .paper-honor {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: normal;
+      text-transform: none;
     }
 
     ul.ul-papers li .description a {
-      display: inline-block;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      padding: 6px 10px;
-      border: 1px solid #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: #f9fafb;
-      color: #374151;
-      font-size: 0.88rem;
-      font-weight: 500;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
       white-space: nowrap;
     }
 
     ul.ul-papers li .description a:hover {
-      background: #f3f4f6;
-      color: #111827;
-      text-decoration: none;
+      color: var(--accent);
+      border-color: var(--line-strong);
+      background: var(--surface-muted);
+    }
+
+    #activities h2 {
+      margin: 0 0 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     #activities ul,
     #teachinig_experiences ul,
     #awards ul {
-      padding-left: 1.1rem;
-      color: #374151;
-      line-height: 1.9;
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
     }
 
-    #activities h1,
-    #teachinig_experiences h1,
-    #awards h1 {
-      margin-bottom: 1rem;
+    #activities li,
+    #teachinig_experiences li,
+    #awards li {
+      margin-bottom: 0;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    #awards li b {
+      color: var(--text);
+    }
+
+    @media (max-width: 991px) {
+      #profile {
+        position: static;
+        margin-bottom: 32px;
+        height: auto;
+      }
     }
 
     @media (max-width: 768px) {
       .home-section {
-        padding: 40px 0 !important;
+        padding: 64px 0 !important;
       }
 
-      #profile {
-        padding-right: 0;
-        margin-bottom: 24px;
+      .home-section:first-of-type {
+        padding-top: 84px !important;
       }
 
-      ul.ul-papers li .img {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 14px;
+      .home-section h1 {
+        font-size: 1.75rem;
+      }
+
+      .portrait-title h2 {
+        font-size: 1.7rem;
+      }
+
+      .lead {
+        font-size: 1.02rem;
+        line-height: 1.8;
+      }
+
+      .contact-inline {
+        margin-top: 20px;
+      }
+
+      .education-section {
+        margin-top: 42px;
+        padding-top: 22px;
+      }
+
+      .profile-links {
+        gap: 8px;
+      }
+
+      .navbar-nav .nav-link {
+        margin-right: 0;
       }
 
       ul.ul-papers > li {
         grid-template-columns: 1fr;
-        row-gap: 0;
+        row-gap: 16px;
+        padding: 18px;
+      }
+
+      ul.ul-papers li .img {
+        max-width: none;
       }
     }
   </style>
 
 </head>
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main">
-
-  <aside class="search-results" id="search">
-    <div class="container">
-      <section class="search-header">
-
-        <div class="row no-gutters justify-content-between mb-3">
-          <div class="col-6">
-            <h1>Search</h1>
-          </div>
-          <div class="col-6 col-search-close">
-            <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-        <div id="search-box">
-          <input name="q" id="search-query" placeholder="Search..." autocapitalize="off" autocomplete="off"
-            autocorrect="off" spellcheck="false" type="search">
-        </div>
-
-      </section>
-      <section class="section-search-results">
-
-        <div id="search-hits">
-        </div>
-
-      </section>
-    </div>
-  </aside>
+<body id="top">
 
 
   <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
     <div class="container">
       <div class="d-none d-lg-inline-flex">
-        <a class="navbar-brand" href="/">Youngju Na</a>
+        <a class="navbar-brand" href="./">Youngju Na</a>
       </div>
 
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-content"
@@ -327,57 +568,46 @@
       </button>
 
       <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-        <a class="navbar-brand" href="/">Youngju Na</a>
+        <a class="navbar-brand" href="./">Youngju Na</a>
       </div>
 
       <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
         <ul class="navbar-nav d-md-inline-flex">
           <li class="nav-item">
-            <a class="nav-link " href="/#about" data-target="#about"><span>Home</span></a>
+            <a class="nav-link " href="#about" data-target="#about"><span>Home</span></a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="/#papers" data-target="#papers"><span>Publications</span></a>
+            <a class="nav-link " href="#papers" data-target="#papers"><span>Publications</span></a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="/#awards" data-target="#awards"><span>Awards &amp; Honors</span></a>
+            <a class="nav-link " href="#awards" data-target="#awards"><span>Awards &amp; Honors</span></a>
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link " href="/#activities" data-target="#activities"><span>Activities</span></a>
+            <a class="nav-link " href="#activities" data-target="#activities"><span>Activities</span></a>
           </li>
 
 
         </ul>
       </div>
-
-      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
-
-        <li class="nav-item">
-          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
-        </li>
-
-      </ul>
-
     </div>
   </nav>
 
 
   <span class="js-widget-page d-none"></span>
 
-  <section id="about" class="home-section wg-about   " style="padding: 30px 0 20px 0;">
+  <section id="about" class="home-section wg-about" style="padding: 30px 0 20px 0;">
     <div class="container">
-
-      <div class="row">
+      <div class="row about-layout">
         <div class="col-12 col-lg-4">
           <div id="profile">
-            <img class="avatar avatar-circle" src="/resources/profile.jpg" alt="Avatar">
+            <img class="avatar avatar-circle" src="resources/profile.jpg" alt="Avatar">
             <div class="portrait-title">
               <h2>Youngju Na</h2>
               <h3>Ph.D. Candidate</h3>
-
               <h3>
                 <a href="https://cs.kaist.ac.kr/" target="_blank" rel="noopener">
                   <span>School of Computing, KAIST</span>
@@ -386,216 +616,177 @@
             </div>
             <div class="profile-links">
               <a href="resources/cv.pdf"><b>CV</b></a>
-              | <a href="https://scholar.google.com/citations?user=HV3DYUcAAAAJ&hl=en"><b>Google Scholar</b></a>
-              | <a href="https://github.com/Youngju-Na"><b>GitHub</b></a>
+              <a href="https://scholar.google.com/citations?user=HV3DYUcAAAAJ&hl=en"><b>Google Scholar</b></a>
+              <a href="https://github.com/Youngju-Na"><b>GitHub</b></a>
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-8">
 
-          <br>
-          <p>I am a second-year Ph.D. student in <a href="https://sgvr.kaist.ac.kr">Scalable Graphics, Vision, and
+        <div class="col-12 col-lg-8 about-main">
+          <p class="section-label">3D Vision, Robotics, and AI Research</p>
+          <p class="lead">
+            I am a second-year Ph.D. student in <a href="https://sgvr.kaist.ac.kr">Scalable Graphics, Vision, and
               Robotics (SGVR) Lab</a> at <a href="https://kaist.ac.kr/">KAIST</a>, advised by <a
-              href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>.
-            Last Summer, I was fortunate to visit <a href="https://www.naverlabs.com/">NAVER LABS</a> Spatial AI team as
-            a research intern.
-            The goal of my research is to empower AI with spatial understanding by reconstructing, generating, and
-            interacting within 3D scenes.
-            Recently, I’ve been focusing on world models, robot vision, motion modeling, and rendering.
-          <div class="row">
+              href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>. Last Summer, I was fortunate to visit <a
+              href="https://www.naverlabs.com/">NAVER LABS</a> Spatial AI team as a research intern. The goal of my
+            research is to empower AI with spatial understanding by reconstructing, generating, and interacting within
+            3D scenes. Recently, I’ve been focusing on world models, robot vision, motion modeling, and rendering.
+          </p>
 
-            <div class="col-md-5">
-              <h3>Contact</h3>
-              <ul class="ul-contact fa-ul">
-                <li>
-                  <i class="fa-li fas fa-envelope"></i>
-                  <div class="description">
-                    <p class="course">yjna2907 [at] kaist.ac.kr</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="fa-li fas fa-map-marker"></i>
-                  <div class="description">
-                    <p class="course">E3-1 3443, 291 Daehak-ro, Yuseong-gu, Daejeon, Korea, 34141</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-md-7">
-              <h3>Education</h3>
-              <ul class="ul-edu fa-ul">
-                <li>
-                  <i class="fa-li fas fa-graduation-cap"></i>
-                  <div class="description">
-                    <p class="course">Ph.D in Computer Science, KAIST</p>
-                    <p class="institution">Mar. 2025 - current</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="fa-li fas fa-graduation-cap"></i>
-                  <div class="description">
-                    <p class="course">Master's in Computer Science, KAIST</p>
-                    <p class="institution">Mar. 2023 - Feb 2025</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="fa-li fas fa-graduation-cap"></i>
-                  <div class="description">
-                    <p class="course">
-                      B.S. in
-                      <span class="major">Industrial Engineering</span>
-                      &amp;
-                      <span class="major double">IoT Artificial Intelligence</span>
-                      , Chonnam National University
-                    </p>
-                    <p class="institution">Mar. 2017 – Feb. 2023</p>
-                    <p class="institution"><strong>- Top Rank (GPA: 4.36 / 4.5, Major GPA: 4.46 / 4.5)</strong></p>
-                  </div>
-            </div>
-            </li>
-            </ul>
+          <div class="contact-inline">
+            <span class="contact-item">yjna2907 [at] kaist.ac.kr</span>
+            <span class="contact-item">Daejeon, Korea</span>
+            <span class="contact-item">3D Vision • Robotics • AI</span>
           </div>
         </div>
       </div>
     </div>
-
-    </div>
   </section>
 
 
-  <section id="papers" class="home-section wg-papers   " style="padding: 20px 0 20px 0;">
+  <section id="papers" class="home-section wg-papers" style="padding: 20px 0 20px 0;">
     <div class="container">
-
       <div class="row">
-
-        <div class="col-lg-18">
+        <div class="col-lg-12">
           <h1>Publications</h1>
-        </div>
-        <div class="row">
+          <p class="papers-note">Selected publications. Full publication list, including domestic publications, is available in my <a href="resources/cv.pdf">CV</a>.</p>
+
           <ul class="ul-papers">
-            * Full publication list (including domestic publications) is available in my <a
-              href="resources/cv.pdf">CV</a>.
-            
             <li>
               <div class="img">
-                <img src="/resources/paper/glint.png" class="img-responsive" alt="">
+                <img src="resources/paper/glint.png" class="img-responsive" alt="GLINT preview">
               </div>
               <div class="description">
                 <p class="title">GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transport</p>
-                <p class="authors"><b>Youngju Na</b>, Jaeseong Yun, Soohyun Ryu, Hyunsu Kim, Sung-Eui Yoon, and Suyong
-                  Yeon<br /></p>
-                <p class="venue">CVPR 2026<br>
-                <p class="resources"></p>
-                <a href="https://youngju-na.github.io/GLINT/">[Project]</a>
-                <a href="https://arxiv.org/abs/2603.26181">[Paper]</a> 
-                <a href="https://github.com/youngju-na/GLINT">[Code]</a>                   
+                <p class="authors"><b>Youngju Na</b>, Jaeseong Yun, Soohyun Ryu, Hyunsu Kim, Sung-Eui Yoon, and Suyong Yeon</p>
+                <p class="venue">CVPR 2026 <span class="paper-honor">Oral</span></p>
+                <p class="resources">
+                  <a href="https://youngju-na.github.io/GLINT/">Project</a>
+                  <a href="https://arxiv.org/abs/2603.26181">Paper</a>
+                  <a href="https://github.com/youngju-na/GLINT">Code</a>
+                </p>
+              </div>
+            </li>
+
             <li>
               <div class="img">
-                <img src="/resources/paper/vrrt.png" class="img-responsive" alt="">
+                <img src="resources/paper/vrrt.png" class="img-responsive" alt="Visual-RRT preview">
               </div>
               <div class="description">
                 <p class="title">Visual-RRT: Finding Paths toward Visual-Goals via Differentiable Rendering</p>
-                <p class="authors"> Sebin Lee*, Jumin Lee*, Taeyeon Kim, <b>Youngju Na</b>, Woobin Im, and Sung-Eui
-                  Yoon<br /></p>
-                <p class="venue">CVPR 2026<br>
-                <p class="resources"></p>
-                <a href="https://sgvr.kaist.ac.kr/Visual-RRT/">[Project]</a> <a
-                  href="https://arxiv.org/abs/2403.07773">[Paper]</a>
+                <p class="authors">Sebin Lee*, Jumin Lee*, Taeyeon Kim, <b>Youngju Na</b>, Woobin Im, and Sung-Eui Yoon</p>
+                <p class="venue">CVPR 2026 <span class="paper-honor">Highlight</span></p>
+                <p class="resources">
+                  <a href="https://sgvr.kaist.ac.kr/Visual-RRT/">Project</a>
+                  <a href="https://arxiv.org/abs/2403.07773">Paper</a>
+                </p>
+              </div>
+            </li>
 
             <li>
               <div class="img">
-                <img src="resources/paper/camo_results_real.gif" class="img-responsive" alt="">
+                <img src="resources/paper/camo_results_real.gif" class="img-responsive" alt="MorphGS preview">
               </div>
               <div class="description">
                 <p class="title">MorphGS: Morphology-Adaptive Articulated 3D Motion Transfer from Videos</p>
-                <p class="authors"> Taeyeon Kim*, <b>Youngju Na*</b>, Jumin Lee, Sebin Lee, Minhyuk Sung, and Sung-eui Yoon<br />
+                <p class="authors">Taeyeon Kim*, <b>Youngju Na*</b>, Jumin Lee, Sebin Lee, Minhyuk Sung, and Sung-eui Yoon</p>
+                <p class="venue">arXiv 2026</p>
+                <p class="resources">
+                  <a href="https://camo-project-page.github.io/">Project</a>
+                  <a href="https://arxiv.org/abs/2601.02716">Paper</a>
                 </p>
-                <p class="venue">arxiv 2026<br>
-                <p class="resources"></p>
-                <a href="https://camo-project-page.github.io/">[Project]</a>
-                <a href="https://arxiv.org/abs/2601.02716">[Paper]</a>
-            
-            <li>
-              <div class="img">
-                <img src="/resources/paper/bmvc25_aegisrf.png" class="img-responsive" alt="">
               </div>
-              <div class="description">
-                <p class="title">AegisRF: Adversarial Perturbations Guided with Sensitivity for Protecting Intellectual
-                  Property of Neural Radiance Fields</p>
-                <p class="authors"> Woo Jae Kim, Kyu Beom Han, Yoonki Cho, <b>Youngju Na</b>, Junsik Jung, and Sung-eui
-                  Yoon<br /></p>
-                <p class="venue">BMVC 2025<br>
-                <p class="resources"></p>
-                <a href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/">[Project]</a> <a
-                  href="https://arxiv.org/abs/2510.19371">[Paper]</a> <a
-                  href="https://github.com/wkim97/AegisRF">[Code]</a>
+            </li>
 
             <li>
               <div class="img">
-                <img src="/resources/paper/share.png" class="img-responsive" alt="">
+                <img src="resources/paper/bmvc25_aegisrf.png" class="img-responsive" alt="AegisRF preview">
+              </div>
+              <div class="description">
+                <p class="title">AegisRF: Adversarial Perturbations Guided with Sensitivity for Protecting Intellectual Property of Neural Radiance Fields</p>
+                <p class="authors">Woo Jae Kim, Kyu Beom Han, Yoonki Cho, <b>Youngju Na</b>, Junsik Jung, and Sung-eui Yoon</p>
+                <p class="venue">BMVC 2025</p>
+                <p class="resources">
+                  <a href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/">Project</a>
+                  <a href="https://arxiv.org/abs/2510.19371">Paper</a>
+                  <a href="https://github.com/wkim97/AegisRF">Code</a>
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div class="img">
+                <img src="resources/paper/share.png" class="img-responsive" alt="SHARE preview">
               </div>
               <div class="description">
                 <p class="title">POSE-FREE 3D GAUSSIAN SPLATTING VIA SHAPE-RAY ESTIMATION</p>
-                <p class="authors"><b>Youngju Na*</b>, Taeyeon Kim*, Jumin Lee, Kyu Beom Han, Woo Jae Kim, Sung-eui
-                  Yoon<br /></p>
-                <p class="venue">ICIP 2025 <span style="color: red;">Best Student Paper Award</span> <b>(Top 0.16%)</b>
-                  <br>
-                <p class="resources"></p>
-                <a href="https://arxiv.org/abs/2505.22978">[Paper]</a> <a
-                  href="https://github.com/youngju-na/SHARE">[Code]</a>
+                <p class="authors"><b>Youngju Na*</b>, Taeyeon Kim*, Jumin Lee, Kyu Beom Han, Woo Jae Kim, Sung-eui Yoon</p>
+                <p class="venue">ICIP 2025 <span class="paper-honor">Best Student Paper Award</span> <b>(Top 0.16%)</b></p>
+                <p class="resources">
+                  <a href="https://arxiv.org/abs/2505.22978">Paper</a>
+                  <a href="https://github.com/youngju-na/SHARE">Code</a>
+                </p>
+              </div>
+            </li>
 
             <li>
               <div class="img">
-                <img src="/resources/paper/uforecon.png" class="img-responsive" alt="">
+                <img src="resources/paper/uforecon.png" class="img-responsive" alt="UFORecon preview">
               </div>
               <div class="description">
-                <p class="title">UFORecon: generalizable sparse-view surface reconstruction from arbitrary and
-                  unfavorable sets</p>
-                <p class="authors"><b>Youngju Na</b>, Woo Jae Kim, Kyu Beom Han, Suhyeon Ha, Sung-Eui Yoon<br /></p>
-                <p class="venue">CVPR 2024<br>
+                <p class="title">UFORecon: generalizable sparse-view surface reconstruction from arbitrary and unfavorable sets</p>
+                <p class="authors"><b>Youngju Na</b>, Woo Jae Kim, Kyu Beom Han, Suhyeon Ha, Sung-Eui Yoon</p>
+                <p class="venue">CVPR 2024</p>
                 <p class="resources">
-                  <a href="https://youngju-na.github.io/uforecon.github.io/">[Project]</a> <a
-                    href="https://arxiv.org/abs/2403.05086">[Paper]</a> <a
-                    href="https://github.com/Youngju-Na/UFORecon">[Code]</a>
+                  <a href="https://youngju-na.github.io/uforecon.github.io/">Project</a>
+                  <a href="https://arxiv.org/abs/2403.05086">Paper</a>
+                  <a href="https://github.com/Youngju-Na/UFORecon">Code</a>
+                </p>
+              </div>
+            </li>
 
             <li>
               <div class="img">
-                <img src="/resources/paper/skd.png" class="img-responsive" alt="">
+                <img src="resources/paper/skd.png" class="img-responsive" alt="SKD preview">
               </div>
               <div class="description">
                 <p class="title">Shared knowledge distillation for robust multi-scale super-resolution networks</p>
-                <p class="authors"><b>*Youngju Na</b>, *Hee Hyeon Kim, Seok Bong Yoo<br /></p>
-                <p class="venue">Electronics Letters 2022<br>
+                <p class="authors"><b>*Youngju Na</b>, *Hee Hyeon Kim, Seok Bong Yoo</p>
+                <p class="venue">Electronics Letters 2022</p>
                 <p class="resources">
-                  <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526">[Paper]</a>
+                  <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526">Paper</a>
+                </p>
+              </div>
+            </li>
 
             <li>
               <div class="img">
-                <img src="/resources/paper/haze-net.png" class="img-responsive" alt="">
+                <img src="resources/paper/haze-net.png" class="img-responsive" alt="HAZE-Net preview">
               </div>
               <div class="description">
-                <p class="title">HAZE-Net: High-frequency attentive super-resolved gaze estimation in low-resolution
-                  face images</p>
-                <p class="authors">Jun-Seok Yun, <b>Youngju Na</b>, Hee Hyeon Kim, Hyung-Il Kim, Seok Bong Yoo<br /></p>
-                <p class="venue">ACCV 2022<br>
+                <p class="title">HAZE-Net: High-frequency attentive super-resolved gaze estimation in low-resolution face images</p>
+                <p class="authors">Jun-Seok Yun, <b>Youngju Na</b>, Hee Hyeon Kim, Hyung-Il Kim, Seok Bong Yoo</p>
+                <p class="venue">ACCV 2022</p>
                 <p class="resources">
-                  <a href="https://arxiv.org/abs/2209.10167">[Paper]</a> <a
-                    href="https://github.com/dbseorms16/HAZE_Net/">[Code]</a>
+                  <a href="https://arxiv.org/abs/2209.10167">Paper</a>
+                  <a href="https://github.com/dbseorms16/HAZE_Net/">Code</a>
+                </p>
+              </div>
+            </li>
 
             <li>
               <div class="img">
-                <img src="/resources/paper/latentgaze.png" class="img-responsive" alt="">
+                <img src="resources/paper/latentgaze.png" class="img-responsive" alt="LatentGaze preview">
               </div>
               <div class="description">
-                <p class="title">Latentgaze: Cross-domain gaze estimation through gaze-aware analytic latent code
-                  manipulation</p>
-                <p class="authors">Isack Lee, Jun-Seok Yun, Hee Hyeon Kim, <b>Youngju Na</b>, Seok Bong Yoo<br /></p>
-                <p class="venue">ACCV 2022<br>
+                <p class="title">Latentgaze: Cross-domain gaze estimation through gaze-aware analytic latent code manipulation</p>
+                <p class="authors">Isack Lee, Jun-Seok Yun, Hee Hyeon Kim, <b>Youngju Na</b>, Seok Bong Yoo</p>
+                <p class="venue">ACCV 2022</p>
                 <p class="resources">
-                  <a href="https://arxiv.org/pdf/2209.10171">[Paper]</a> <a
-                    href="https://github.com/leeisack/LatentGaze/">[Code]</a>
-
+                  <a href="https://arxiv.org/pdf/2209.10171">Paper</a>
+                  <a href="https://github.com/leeisack/LatentGaze/">Code</a>
+                </p>
+              </div>
             </li>
           </ul>
         </div>
@@ -621,8 +812,33 @@
             <li>NeurIPS</li>
             <li>Transaction on Computational Imaging</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          </ul>
+  <section id="education" class="home-section wg-blank" style="padding: 20px 0 20px 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Education</h1>
+          <div class="education-section standalone">
+            <ul class="education-list">
+              <li>
+                <p class="degree">Ph.D in Computer Science, KAIST</p>
+                <p class="meta">Mar. 2025 - current</p>
+              </li>
+              <li>
+                <p class="degree">Master's in Computer Science, KAIST</p>
+                <p class="meta">Mar. 2023 - Feb 2025</p>
+              </li>
+              <li>
+                <p class="degree">B.S. in Industrial Engineering &amp; IoT Artificial Intelligence, Chonnam National University</p>
+                <p class="meta">Mar. 2017 - Feb. 2023</p>
+                <p class="note">Top Rank (GPA: 4.36 / 4.5, Major GPA: 4.46 / 4.5)</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -662,55 +878,6 @@
       </div>
     </div>
   </section>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"
-    integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"
-    integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
-    integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"
-    integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
-
-
-  <script>const code_highlighting = false;</script>
-  <script>const isSiteThemeDark = false;</script>
-
-  <script>
-    const search_config = { "indexURI": "/index.json", "minLength": 1, "threshold": 0.3 };
-    const i18n = { "no_results": "No results found", "placeholder": "Search...", "results": "results found" };
-    const content_type = {
-      'post': "Posts",
-      'project': "Projects",
-      'publication': "Publications",
-      'talk': "Talks"
-    };
-  </script>
-
-  <script id="search-hit-fuse-template" type="text/x-template">
-      <div class="search-hit" id="summary-{{key}}">
-      <div class="search-hit-content">
-        <div class="search-hit-name">
-          <a href="{{relpermalink}}">{{title}}</a>
-          <div class="article-metadata search-hit-type">{{type}}</div>
-          <p class="search-hit-description">{{snippet}}</p>
-        </div>
-      </div>
-      </div>
-    </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js"
-    integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"
-    integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
-
-  <script src="/js/academic.min.a8d7005002cb4a052fd6d721e83df9ba.js"></script>
-
-
-
   <div class="container">
     <footer class="site-footer">
 
@@ -728,32 +895,6 @@
       </p>
     </footer>
 
-  </div>
-
-
-  <div id="modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Cite</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <pre><code class="tex hljs"></code></pre>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-            <i class="fas fa-copy"></i> Copy
-          </a>
-          <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-            <i class="fas fa-download"></i> Download
-          </a>
-          <div id="modal-error"></div>
-        </div>
-      </div>
-    </div>
   </div>
 
 </body>
