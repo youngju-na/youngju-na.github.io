@@ -67,6 +67,8 @@
       --line: #e5e7eb;
       --line-strong: #d6dbe1;
       --accent: #315f9e;
+      --author-link: #2f6fae;
+      --author-link-hover: #1f4f8c;
       --emphasis: #c62828;
       --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.08);
     }
@@ -422,6 +424,22 @@
       color: var(--text-soft);
     }
 
+    ul.ul-papers li .description p.authors b {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    ul.ul-papers li .description p.authors a {
+      color: var(--author-link);
+      font-weight: inherit;
+      text-decoration: none;
+    }
+
+    ul.ul-papers li .description p.authors a:hover {
+      color: var(--author-link-hover);
+      text-decoration: underline;
+    }
+
     ul.ul-papers li .description p.venue {
       margin-bottom: 1rem;
       font-size: 0.9rem;
@@ -439,7 +457,7 @@
       text-transform: none;
     }
 
-    ul.ul-papers li .description a {
+    ul.ul-papers li .description p.resources a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -455,7 +473,7 @@
       white-space: nowrap;
     }
 
-    ul.ul-papers li .description a:hover {
+    ul.ul-papers li .description p.resources a:hover {
       color: var(--accent);
       border-color: var(--line-strong);
       background: var(--surface-muted);
@@ -628,10 +646,12 @@
           <p class="lead">
             I am a second-year Ph.D. student in <a href="https://sgvr.kaist.ac.kr">Scalable Graphics, Vision, and
               Robotics (SGVR) Lab</a> at <a href="https://kaist.ac.kr/">KAIST</a>, advised by <a
-              href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>. Last Summer, I was fortunate to visit <a
-              href="https://www.naverlabs.com/">NAVER LABS</a> Spatial AI team as a research intern. The goal of my
-            research is to empower AI with spatial understanding by reconstructing, generating, and interacting within
-            3D scenes. Recently, I’ve been focusing on world models, robot vision, motion modeling, and rendering.
+              href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>. Last summer, I was fortunate to join the
+              Spatial AI team at <a href="https://www.naverlabs.com/">NAVER LABS</a> as a research intern (advised by
+              <a href="https://www.linkedin.com/in/suyong-yeon-89550723/">Suyong Yeon</a>). The
+              goal of my research is to empower AI with spatial understanding by reconstructing, generating, and
+              interacting within 3D scenes. Recently, I’ve been focusing on world models, robot vision, motion modeling,
+              and rendering.
           </p>
 
           <div class="contact-inline">
@@ -659,7 +679,7 @@
               </div>
               <div class="description">
                 <p class="title">MorphGS: Morphology-Adaptive Articulated 3D Motion Transfer from Videos</p>
-                <p class="authors">Taeyeon Kim<sup>*</sup>, <b>Youngju Na<sup>*</sup></b>, Jumin Lee, Sebin Lee, Minhyuk Sung, and Sung-eui Yoon (<sup>*</sup>Equal contribution)</p>
+                <p class="authors"><a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim<sup>*</sup></a>, <b>Youngju Na<sup>*</sup></b>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee</a>, <a href="https://sgvr.kaist.ac.kr/member/lee-sebin/">Sebin Lee</a>, <a href="https://mhsung.github.io/">Minhyuk Sung</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-eui Yoon</a> (<sup>*</sup>Equal contribution)</p>
                 <p class="venue">ECCV 2026</p>
                 <p class="resources">
                   <a href="https://camo-project-page.github.io/">Project</a>
@@ -674,7 +694,7 @@
               </div>
               <div class="description">
                 <p class="title">GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transport</p>
-                <p class="authors"><b>Youngju Na</b>, Jaeseong Yun, Soohyun Ryu, Hyunsu Kim, Sung-Eui Yoon, and Suyong Yeon</p>
+                <p class="authors"><b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=ie5ew-IAAAAJ">Jaeseong Yun</a>, <a href="https://scholar.google.com/citations?user=WM2AjCoAAAAJ">Soohyun Ryu</a>, <a href="https://blandocs.github.io/">Hyunsu Kim</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>, and <a href="https://www.linkedin.com/in/suyong-yeon-89550723/">Suyong Yeon</a></p>
                 <p class="venue">CVPR 2026 <span class="paper-honor">Oral, Best Paper Award Candidate (Top 1.8%)</span></p>
                 <p class="resources">
                   <a href="https://youngju-na.github.io/GLINT/">Project</a>
@@ -690,7 +710,7 @@
               </div>
               <div class="description">
                 <p class="title">Visual-RRT: Finding Paths toward Visual-Goals via Differentiable Rendering</p>
-                <p class="authors">Sebin Lee<sup>*</sup>, Jumin Lee<sup>*</sup>, Taeyeon Kim, <b>Youngju Na</b>, Woobin Im, and Sung-Eui Yoon (<sup>*</sup>Equal contribution)</p>
+                <p class="authors"><a href="https://sgvr.kaist.ac.kr/member/lee-sebin/">Sebin Lee<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim</a>, <b>Youngju Na</b>, <a href="https://sgvr.kaist.ac.kr/member/woobin-im/">Woobin Im</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a> (<sup>*</sup>Equal contribution)</p>
                 <p class="venue">CVPR 2026 <span class="paper-honor">Highlight</span></p>
                 <p class="resources">
                   <a href="https://sgvr.kaist.ac.kr/Visual-RRT/">Project</a>
@@ -705,7 +725,7 @@
               </div>
               <div class="description">
                 <p class="title">AegisRF: Adversarial Perturbations Guided with Sensitivity for Protecting Intellectual Property of Neural Radiance Fields</p>
-                <p class="authors">Woo Jae Kim, Kyu Beom Han, Yoonki Cho, <b>Youngju Na</b>, Junsik Jung, and Sung-eui Yoon</p>
+                <p class="authors"><a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://sgvr.kaist.ac.kr/member/yoonki-cho/">Yoonki Cho</a>, <b>Youngju Na</b>, <a href="https://sgvr.kaist.ac.kr/member/junsik-jung/">Junsik Jung</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-eui Yoon</a></p>
                 <p class="venue">BMVC 2025</p>
                 <p class="resources">
                   <a href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/">Project</a>
@@ -721,7 +741,7 @@
               </div>
               <div class="description">
                 <p class="title">POSE-FREE 3D GAUSSIAN SPLATTING VIA SHAPE-RAY ESTIMATION</p>
-                <p class="authors"><b>Youngju Na<sup>*</sup></b>, Taeyeon Kim<sup>*</sup>, Jumin Lee, Kyu Beom Han, Woo Jae Kim, Sung-eui Yoon (<sup>*</sup>Equal contribution)</p>
+                <p class="authors"><b>Youngju Na<sup>*</sup></b>, <a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-eui Yoon</a> (<sup>*</sup>Equal contribution)</p>
                 <p class="venue">ICIP 2025 <span class="paper-honor">Best Student Paper Award (Top 0.16%)</span></p>
                 <p class="resources">
                   <a href="https://arxiv.org/abs/2505.22978">Paper</a>
@@ -736,7 +756,7 @@
               </div>
               <div class="description">
                 <p class="title">UFORecon: generalizable sparse-view surface reconstruction from arbitrary and unfavorable sets</p>
-                <p class="authors"><b>Youngju Na</b>, Woo Jae Kim, Kyu Beom Han, Suhyeon Ha, Sung-Eui Yoon</p>
+                <p class="authors"><b>Youngju Na</b>, <a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://sgvr.kaist.ac.kr/member/suhyeon-ha/">Suhyeon Ha</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a></p>
                 <p class="venue">CVPR 2024</p>
                 <p class="resources">
                   <a href="https://youngju-na.github.io/uforecon.github.io/">Project</a>
@@ -752,7 +772,7 @@
               </div>
               <div class="description">
                 <p class="title">Shared knowledge distillation for robust multi-scale super-resolution networks</p>
-                <p class="authors"><b>Youngju Na<sup>*</sup></b>, Hee Hyeon Kim<sup>*</sup>, Seok Bong Yoo (<sup>*</sup>Equal contribution)</p>
+                <p class="authors"><b>Youngju Na<sup>*</sup></b>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim<sup>*</sup></a>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a> (<sup>*</sup>Equal contribution)</p>
                 <p class="venue">Electronics Letters 2022</p>
                 <p class="resources">
                   <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526">Paper</a>
@@ -766,7 +786,7 @@
               </div>
               <div class="description">
                 <p class="title">HAZE-Net: High-frequency attentive super-resolved gaze estimation in low-resolution face images</p>
-                <p class="authors">Jun-Seok Yun, <b>Youngju Na</b>, Hee Hyeon Kim, Hyung-Il Kim, Seok Bong Yoo</p>
+                <p class="authors"><a href="https://scholar.google.com/citations?user=PCMjeNUAAAAJ">Jun-Seok Yun</a>, <b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim</a>, <a href="https://scholar.google.com/citations?user=3belJDEAAAAJ">Hyung-Il Kim</a>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a></p>
                 <p class="venue">ACCV 2022</p>
                 <p class="resources">
                   <a href="https://arxiv.org/abs/2209.10167">Paper</a>
@@ -781,7 +801,7 @@
               </div>
               <div class="description">
                 <p class="title">Latentgaze: Cross-domain gaze estimation through gaze-aware analytic latent code manipulation</p>
-                <p class="authors">Isack Lee, Jun-Seok Yun, Hee Hyeon Kim, <b>Youngju Na</b>, Seok Bong Yoo</p>
+                <p class="authors"><a href="https://scholar.google.com/citations?user=3lEuZtUAAAAJ">Isack Lee</a>, <a href="https://scholar.google.com/citations?user=PCMjeNUAAAAJ">Jun-Seok Yun</a>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim</a>, <b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a></p>
                 <p class="venue">ACCV 2022</p>
                 <p class="resources">
                   <a href="https://arxiv.org/pdf/2209.10171">Paper</a>
