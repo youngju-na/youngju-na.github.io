@@ -7,7 +7,7 @@
   <title>Youngju Na</title>
   <meta name="author" content="Youngju Na">
   <meta name="description" content="Youngju Na, Ph.D. Candidate in the School of Computing at KAIST. 3D vision, robotics, and AI.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0b0c0f">
   <link rel="canonical" href="https://youngju-na.github.io/">
 
   <meta property="og:type" content="website">
@@ -19,13 +19,52 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
 
+  <script>
+    // Apply the saved theme before first paint. Dark is the default.
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 
   <style>
-    /* ---------- Tokens ---------- */
+    /* ---------- Tokens (dark by default) ---------- */
     :root {
+      color-scheme: dark;
+      --bg: #0b0c0f;
+      --bg-alt: #111318;
+      --text: #ececf1;
+      --text-2: #c3c6cf;
+      --text-3: #9097a4;
+      --text-4: #636977;
+      --line: #262a33;
+      --line-soft: #1d2028;
+      --accent: #7db3ff;
+      --accent-b: #b59dff;
+      --honor: #ffb36b;
+      --career: #6fd3a5;
+      --glow: rgba(125, 179, 255, 0.11);
+      --thumb-dim: 0.9;
+      --thumb-ring: transparent;
+
+      --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --container: 980px;
+      --gutter: 24px;
+      --col: 248px;        /* left column: thumbnails and section labels */
+      --gap: 40px;         /* gap between the two columns */
+      --nav-h: 56px;
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
       --bg: #ffffff;
       --bg-alt: #f5f5f7;
       --text: #1d1d1f;
@@ -34,16 +73,13 @@
       --text-4: #86868b;
       --line: #d2d2d7;
       --line-soft: #e8e8ed;
-      --link: #0066cc;
-      --honor: #bf4800;
-      --tile: #ffffff;
-
-      --container: 980px;
-      --gutter: 24px;
-      --col: 272px;        /* left column: thumbnails and section labels */
-      --gap: 40px;         /* gap between the two columns */
-      --nav-h: 52px;
-      --radius: 14px;
+      --accent: #0066cc;
+      --accent-b: #7046d8;
+      --honor: #b84500;
+      --career: #16804f;
+      --glow: rgba(0, 102, 204, 0.07);
+      --thumb-dim: 1;
+      --thumb-ring: var(--line);
     }
 
     /* ---------- Base ---------- */
@@ -67,12 +103,10 @@
 
     body {
       margin: 0;
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-optical-sizing: auto;
-      font-size: 17px;
-      line-height: 1.53;
-      letter-spacing: -0.011em;
-      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-2);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -92,30 +126,35 @@
       list-style: none;
     }
 
-    img {
+    img,
+    video {
       display: block;
       max-width: 100%;
     }
 
     a {
-      color: var(--link);
+      color: var(--accent);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
-      text-underline-offset: 0.2em;
       text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
     }
 
     :focus-visible {
-      outline: 2px solid #0071e3;
+      outline: 1px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 6px;
     }
 
     ::selection {
-      background: rgba(0, 113, 227, 0.16);
+      background: color-mix(in srgb, var(--accent) 28%, transparent);
     }
 
     sup {
@@ -138,10 +177,10 @@
       top: 0;
       z-index: 100;
       height: var(--nav-h);
-      background: rgba(255, 255, 255, 0.8);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav .container {
@@ -154,68 +193,92 @@
 
     .nav-brand {
       flex-shrink: 0;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: -0.022em;
       color: var(--text);
+      text-decoration: none;
     }
 
-    .nav-brand:hover {
-      text-decoration: none;
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      min-width: 0;
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
+      min-width: 0;
     }
 
     .nav-links a {
       font-size: 14px;
-      letter-spacing: -0.006em;
       color: var(--text-3);
       white-space: nowrap;
-      transition: color 0.2s ease;
+      text-decoration: none;
     }
 
-    .nav-links a:hover,
-    .nav-links a.is-active {
+    .nav-links a:hover {
       color: var(--text);
-      text-decoration: none;
+    }
+
+    .nav-links a.is-active {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      flex-shrink: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-3);
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
     }
 
     /* ---------- Hero ---------- */
     .hero {
-      padding: 104px 0 112px;
+      position: relative;
+      isolation: isolate;
+      padding: 96px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(38% 60% at 84% 36%, var(--glow), transparent 70%),
+        radial-gradient(30% 45% at 6% 0%, color-mix(in srgb, var(--accent-b) 8%, transparent), transparent 70%);
+      pointer-events: none;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 72px;
-    }
-
-    .hero-eyebrow {
-      margin-bottom: 12px;
-      font-size: 17px;
-      line-height: 1.4;
-      font-weight: 600;
-      letter-spacing: -0.012em;
-      color: var(--honor);
+      align-items: start;
+      gap: 64px;
     }
 
     .hero-name {
-      font-size: 56px;
-      line-height: 1.07;
+      font-size: 40px;
+      line-height: 1.15;
       font-weight: 600;
-      letter-spacing: -0.028em;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     .hero-role {
-      margin-top: 10px;
-      font-size: 21px;
-      line-height: 1.38;
-      letter-spacing: -0.016em;
+      margin-top: 8px;
+      font-size: 17px;
       color: var(--text-3);
     }
 
@@ -223,61 +286,59 @@
       color: inherit;
     }
 
+    .hero-areas {
+      width: fit-content;
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-b));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .hero-bio {
-      max-width: 640px;
+      max-width: 620px;
       margin-top: 28px;
-      font-size: 17px;
-      line-height: 1.65;
-      color: var(--text-2);
+      font-size: 16px;
+      line-height: 1.7;
       text-wrap: pretty;
     }
 
-    .hero-actions {
+    .hero-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 32px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      height: 36px;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: var(--bg-alt);
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.006em;
-      transition: background-color 0.2s ease;
-    }
-
-    .button:hover {
-      background: var(--line-soft);
-      text-decoration: none;
+      gap: 8px 24px;
+      margin-top: 28px;
+      font-size: 15px;
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 20px;
-      font-size: 14px;
-      letter-spacing: -0.006em;
+      gap: 4px 24px;
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 13px;
       color: var(--text-3);
     }
 
-    .hero-meta span + span::before {
-      content: "·";
-      margin: 0 10px;
-      color: var(--text-4);
+    .portrait {
+      width: 184px;
+      height: 184px;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, var(--accent), var(--accent-b) 50%, var(--line) 85%);
+      box-shadow: 0 24px 64px var(--glow);
     }
 
-    .portrait {
-      width: 200px;
-      height: 200px;
+    .portrait-inner {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       overflow: hidden;
+      background: var(--bg);
     }
 
     .portrait img {
@@ -289,7 +350,8 @@
 
     /* ---------- Sections ---------- */
     .section {
-      padding: 104px 0;
+      padding: 64px 0 72px;
+      border-top: 1px solid var(--line);
     }
 
     .section-alt {
@@ -297,26 +359,108 @@
     }
 
     .section-head {
-      margin-bottom: 56px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 24px;
+      margin-bottom: 40px;
     }
 
     .section-title {
-      font-size: 40px;
-      line-height: 1.1;
+      font-size: 22px;
+      line-height: 1.3;
       font-weight: 600;
-      letter-spacing: -0.026em;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
 
     .section-intro {
-      margin-top: 12px;
-      font-size: 17px;
+      font-size: 14px;
       color: var(--text-3);
+    }
+
+    .section-intro a {
+      color: inherit;
+    }
+
+    /* ---------- News ---------- */
+    .news > li {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr);
+      column-gap: 24px;
+      align-items: baseline;
+      padding: 7px 0;
+    }
+
+    .js .news:not(.is-expanded) > .is-older {
+      display: none;
+    }
+
+    .news time {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-3);
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .news time {
+      min-width: 64px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .tag-award {
+      color: var(--honor);
+    }
+
+    .tag-career {
+      color: var(--career);
+    }
+
+    .news p {
+      text-wrap: pretty;
+    }
+
+    .news b {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .news-toggle {
+      display: none;
+      margin: 18px 0 0 172px;    /* lines up with the news text column */
+      padding: 0;
+      border: 0;
+      background: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-underline-offset: 0.22em;
+      cursor: pointer;
+    }
+
+    .js .news-toggle {
+      display: inline-block;
+    }
+
+    .news-toggle:hover {
+      text-decoration: underline;
     }
 
     /* ---------- Publications ---------- */
     .pubs {
       display: grid;
-      gap: 48px;
+      gap: 44px;
     }
 
     .pub {
@@ -329,34 +473,32 @@
     .pub-thumb {
       display: block;
       aspect-ratio: 16 / 10;
-      padding: 10px;
-      border-radius: var(--radius);
-      background: var(--tile);
+      padding: 8px;
+      border-radius: 2px;
+      background: #ffffff;    /* figures have transparent or white backgrounds */
+      box-shadow: inset 0 0 0 1px var(--thumb-ring);
       overflow: hidden;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      filter: brightness(var(--thumb-dim));
+      transition: filter 0.2s ease;
     }
 
-    .pub-thumb img {
+    .pub-thumb:hover {
+      filter: none;
+    }
+
+    .pub-thumb img,
+    .pub-thumb video {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .pub-thumb:hover {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .pub-body {
-      margin-top: -4px;    /* aligns the venue's cap height with the thumbnail top */
-    }
-
     .pub-venue {
+      font-family: var(--mono);
       font-size: 13px;
-      line-height: 1.4;
-      font-weight: 600;
-      letter-spacing: -0.003em;
-      color: var(--text);
+      line-height: 1.5;
+      font-weight: 500;
+      color: var(--accent);
     }
 
     .pub-honor {
@@ -364,30 +506,30 @@
     }
 
     .pub-honor::before {
-      content: "·";
-      margin: 0 7px;
+      content: "/";
+      margin: 0 8px;
       color: var(--text-4);
     }
 
     .pub-title {
       margin-top: 6px;
-      font-size: 19px;
-      line-height: 1.32;
+      font-size: 17px;
+      line-height: 1.4;
       font-weight: 600;
-      letter-spacing: -0.018em;
+      color: var(--text);
       text-wrap: pretty;
     }
 
     .pub-authors {
-      margin-top: 8px;
-      font-size: 15px;
+      margin-top: 6px;
+      font-size: 14.5px;
       line-height: 1.55;
-      letter-spacing: -0.009em;
       color: var(--text-3);
     }
 
     .pub-authors a {
       color: inherit;
+      text-decoration: none;
     }
 
     .pub-authors a:hover {
@@ -408,40 +550,9 @@
     .pub-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      height: 30px;
-      padding: 0 12px 0 14px;
-      border-radius: 999px;
-      background: var(--tile);
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: -0.003em;
-      transition: box-shadow 0.2s ease, color 0.2s ease;
-    }
-
-    .chip::after {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: currentColor;
-      opacity: 0.5;
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 6.5l5-5M2.5 1.5h4v4' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 6.5l5-5M2.5 1.5h4v4' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-    }
-
-    .chip:hover {
-      color: var(--link);
-      box-shadow: inset 0 0 0 1px rgba(0, 102, 204, 0.35);
-      text-decoration: none;
+      gap: 4px 20px;
+      margin-top: 10px;
+      font-size: 14px;
     }
 
     /* ---------- CV rows (awards, education, ...) ---------- */
@@ -450,8 +561,8 @@
       grid-template-columns: var(--col) minmax(0, 1fr);
       column-gap: var(--gap);
       align-items: baseline;
-      padding: 36px 0 40px;
-      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      border-top: 1px solid var(--line-soft);
     }
 
     .spec:first-child {
@@ -459,15 +570,19 @@
       border-top: 0;
     }
 
+    .spec:last-child {
+      padding-bottom: 0;
+    }
+
     .spec-label {
-      font-size: 21px;
-      line-height: 1.3;
+      font-size: 18px;
+      line-height: 1.35;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     .spec-caption {
-      margin-top: 4px;
+      margin-top: 2px;
       font-size: 14px;
       color: var(--text-3);
     }
@@ -477,13 +592,11 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 24px;
-      padding: 14px 0;
-      border-top: 1px solid var(--line-soft);
+      padding: 9px 0;
     }
 
     .spec-list > li:first-child {
       padding-top: 0;
-      border-top: 0;
     }
 
     .spec-list > li:last-child {
@@ -495,25 +608,29 @@
     }
 
     .item-sub {
-      margin-top: 2px;
-      font-size: 15px;
+      margin-top: 1px;
+      font-size: 14px;
       color: var(--text-3);
+    }
+
+    .item-sub a {
+      color: inherit;
     }
 
     .item-date {
       flex-shrink: 0;
-      font-size: 15px;
+      font-family: var(--mono);
+      font-size: 13px;
       color: var(--text-3);
-      font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
 
     /* ---------- Footer ---------- */
     .footer {
-      padding: 20px 0 24px;
-      background: var(--bg-alt);
+      padding: 24px 0 32px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
       font-size: 12px;
-      letter-spacing: 0;
       color: var(--text-3);
     }
 
@@ -524,31 +641,23 @@
     }
 
     .footer a {
-      color: var(--text-3);
-    }
-
-    .footer a:hover {
-      color: var(--text);
+      color: inherit;
     }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1068px) {
-      .hero-name {
-        font-size: 48px;
+      :root {
+        --col: 224px;
+        --gap: 32px;
       }
 
       .hero-grid {
-        gap: 48px;
+        gap: 40px;
       }
 
       .portrait {
-        width: 176px;
-        height: 176px;
-      }
-
-      :root {
-        --col: 240px;
-        --gap: 32px;
+        width: 148px;
+        height: 148px;
       }
     }
 
@@ -561,8 +670,12 @@
         gap: 20px;
       }
 
+      .nav-right {
+        gap: 16px;
+      }
+
       .nav-links {
-        gap: 20px;
+        gap: 18px;
         overflow-x: auto;
         scrollbar-width: none;
         -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
@@ -575,26 +688,22 @@
       }
 
       .hero {
-        padding: 56px 0 72px;
+        padding: 48px 0 56px;
       }
 
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 24px;
       }
 
       .portrait {
         order: -1;
-        width: 112px;
-        height: 112px;
+        width: 104px;
+        height: 104px;
       }
 
       .hero-name {
-        font-size: 40px;
-      }
-
-      .hero-role {
-        font-size: 19px;
+        font-size: 32px;
       }
 
       .hero-bio {
@@ -602,55 +711,41 @@
       }
 
       .section {
-        padding: 72px 0;
+        padding: 48px 0 56px;
       }
 
       .section-head {
-        margin-bottom: 40px;
+        margin-bottom: 28px;
       }
 
-      .section-title {
-        font-size: 32px;
+      .news > li {
+        grid-template-columns: 1fr;
+        row-gap: 0;
+        padding: 8px 0;
+      }
+
+      .news-toggle {
+        margin-left: 0;
       }
 
       .pubs {
-        gap: 44px;
+        gap: 40px;
       }
 
       .pub {
         grid-template-columns: 1fr;
-        row-gap: 18px;
-      }
-
-      .pub-body {
-        margin-top: 0;
-      }
-
-      .pub-honor {
-        display: block;
-      }
-
-      .pub-honor::before {
-        content: none;
-      }
-
-      .pub-title {
-        font-size: 18px;
+        row-gap: 16px;
       }
 
       .spec {
         grid-template-columns: 1fr;
-        row-gap: 18px;
-        padding: 28px 0 32px;
-      }
-
-      .spec-label {
-        font-size: 19px;
+        row-gap: 16px;
+        padding: 28px 0;
       }
 
       .spec-list > li {
         flex-direction: column;
-        gap: 2px;
+        gap: 0;
       }
     }
   </style>
@@ -661,12 +756,17 @@
   <nav class="nav" aria-label="Main">
     <div class="container">
       <a class="nav-brand" href="#top">Youngju Na</a>
-      <div class="nav-links">
-        <a href="#papers">Publications</a>
-        <a href="#awards">Awards</a>
-        <a href="#education">Education</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#activities">Activities</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#news">News</a>
+          <a href="#papers">Publications</a>
+          <a href="#awards">Awards</a>
+          <a href="#education">Education</a>
+          <a href="#experience">Experience</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#activities">Activities</a>
+        </div>
+        <button class="theme-toggle" type="button">Light</button>
       </div>
     </div>
   </nav>
@@ -675,7 +775,7 @@
     <section id="about" class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="hero-eyebrow">3D Vision · Robotics · AI</p>
+          <p class="hero-areas">3D Vision · Robotics · AI</p>
           <h1 class="hero-name">Youngju Na</h1>
           <p class="hero-role">Ph.D. Candidate, <a href="https://cs.kaist.ac.kr/" target="_blank" rel="noopener">School of Computing, KAIST</a></p>
           <p class="hero-bio">
@@ -688,19 +788,81 @@
             interacting within 3D scenes. Recently, I’ve been focusing on world models, robot vision, motion modeling,
             and rendering.
           </p>
-          <div class="hero-actions">
-            <a class="button" href="resources/cv.pdf">CV</a>
-            <a class="button" href="https://scholar.google.com/citations?user=HV3DYUcAAAAJ&amp;hl=en">Google Scholar</a>
-            <a class="button" href="https://github.com/Youngju-Na">GitHub</a>
-          </div>
+          <p class="hero-links">
+            <a href="resources/cv.pdf">CV</a>
+            <a href="https://scholar.google.com/citations?user=HV3DYUcAAAAJ&amp;hl=en">Google Scholar</a>
+            <a href="https://github.com/Youngju-Na">GitHub</a>
+          </p>
           <p class="hero-meta">
             <span>yjna2907 [at] kaist.ac.kr</span>
             <span>Daejeon, Korea</span>
           </p>
         </div>
         <div class="portrait">
-          <img src="resources/profile.jpg" alt="Portrait of Youngju Na" width="200" height="200">
+          <div class="portrait-inner">
+            <img src="resources/profile.jpg" alt="Portrait of Youngju Na" width="178" height="178">
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="news" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">News</h2>
+        </div>
+
+        <ul class="news" id="news-list">
+          <li>
+            <div class="news-meta"><time datetime="2026-09">Sep 2026</time><span class="tag">Paper</span></div>
+            <p><a href="#mosdot">MoSDOT</a> was accepted to <b>NeurIPS 2026</b>.</p>
+          </li>
+          <li>
+            <div class="news-meta"><time datetime="2026-06">Jun 2026</time><span class="tag">Paper</span></div>
+            <p><a href="#morphgs">MorphGS</a> was accepted to <b>ECCV 2026</b>.</p>
+          </li>
+          <li>
+            <div class="news-meta"><time datetime="2026-06">Jun 2026</time><span class="tag tag-award">Award</span></div>
+            <p><a href="#glint">GLINT</a> was selected as a <b>Best Paper Award Candidate</b> at CVPR 2026 (top 1.8% of accepted papers).</p>
+          </li>
+          <li>
+            <div class="news-meta"><time datetime="2026-04">Apr 2026</time><span class="tag">Paper</span></div>
+            <p><a href="#glint">GLINT</a> was selected for an <b>Oral</b> presentation and <a href="#visual-rrt">Visual-RRT</a> as a <b>Highlight</b> at CVPR 2026.</p>
+          </li>
+          <li>
+            <div class="news-meta"><time datetime="2026-02">Feb 2026</time><span class="tag">Paper</span></div>
+            <p>Two papers, <a href="#glint">GLINT</a> and <a href="#visual-rrt">Visual-RRT</a>, were accepted to <b>CVPR 2026</b>.</p>
+          </li>
+          <li>
+            <div class="news-meta"><time datetime="2025-09">Sep 2025</time><span class="tag tag-award">Award</span></div>
+            <p><a href="#share">Pose-Free 3DGS via Shape-Ray Estimation</a> received the <b>Best Student Paper Award</b> at ICIP 2025 (top 0.16%).</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2025-08">Aug 2025</time><span class="tag">Paper</span></div>
+            <p><a href="#aegisrf">AegisRF</a> was accepted to <b>BMVC 2025</b>.</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2025-05">May 2025</time><span class="tag">Paper</span></div>
+            <p><a href="#share">Pose-Free 3DGS via Shape-Ray Estimation</a> was accepted to <b>ICIP 2025</b>.</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2025-04">Apr 2025</time><span class="tag tag-career">Career</span></div>
+            <p>Joined the Spatial AI team at <b>NAVER LABS</b> as a research intern.</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2025-03">Mar 2025</time><span class="tag tag-career">Career</span></div>
+            <p>Received my M.S. and started my <b>Ph.D.</b> at KAIST, continuing in the SGVR Lab with Prof. Sung-Eui Yoon.</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2024-02">Feb 2024</time><span class="tag">Paper</span></div>
+            <p><a href="#uforecon">UFORecon</a> was accepted to <b>CVPR 2024</b>.</p>
+          </li>
+          <li class="is-older">
+            <div class="news-meta"><time datetime="2023-03">Mar 2023</time><span class="tag tag-career">Career</span></div>
+            <p>Joined the <b>SGVR Lab</b> at KAIST as an M.S. student, advised by Prof. Sung-Eui Yoon.</p>
+          </li>
+        </ul>
+        <button class="news-toggle" type="button" aria-expanded="false" aria-controls="news-list">Show all news</button>
       </div>
     </section>
 
@@ -708,26 +870,26 @@
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Publications</h2>
-          <p class="section-intro">Selected publications. Full publication list, including domestic publications, is available in my <a href="resources/cv.pdf">CV</a>.</p>
+          <p class="section-intro">Selected. Full list, including domestic publications, in my <a href="resources/cv.pdf">CV</a>.</p>
         </div>
 
         <ul class="pubs">
-          <li class="pub">
+          <li class="pub" id="mosdot">
             <a class="pub-thumb" href="https://alex6095.github.io/mosdot/" tabindex="-1" aria-hidden="true">
-              <img src="resources/paper/mosdot.png" alt="MoSDOT preview" loading="lazy" decoding="async">
+              <video src="resources/paper/mosdot.mp4" poster="resources/paper/mosdot_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
             </a>
             <div class="pub-body">
               <p class="pub-venue">NeurIPS 2026</p>
               <h3 class="pub-title">MoSDOT: Multi-Agent Coordination via Support-Preserving Distillation</h3>
               <p class="pub-authors"><a href="https://sgvr.kaist.ac.kr/member/sangmin-lee/">Sangmin Lee</a>, <b>Youngju Na</b>, <a href="https://sgvr.kaist.ac.kr/member/chanmi-lee/">Chanmi Lee</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://alex6095.github.io/mosdot/">Project</a>
-                <a class="chip" href="https://alex6095.github.io/mosdot/assets/paper/paper.pdf">Paper</a>
+                <a href="https://alex6095.github.io/mosdot/">Project</a>
+                <a href="https://alex6095.github.io/mosdot/assets/paper/paper.pdf">Paper</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="morphgs">
             <a class="pub-thumb" href="https://xodus777.github.io/MorphGS/" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/camo_results_real.gif" alt="MorphGS preview" loading="lazy" decoding="async">
             </a>
@@ -736,29 +898,29 @@
               <h3 class="pub-title">MorphGS: Morphology-Adaptive Articulated 3D Motion Transfer from Videos</h3>
               <p class="pub-authors"><a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim<sup>*</sup></a>, <b>Youngju Na<sup>*</sup></b>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee</a>, <a href="https://sgvr.kaist.ac.kr/member/lee-sebin/">Sebin Lee</a>, <a href="https://mhsung.github.io/">Minhyuk Sung</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a> <span class="note">(<sup>*</sup>Equal contribution)</span></p>
               <p class="pub-links">
-                <a class="chip" href="https://xodus777.github.io/MorphGS/">Project</a>
-                <a class="chip" href="https://arxiv.org/abs/2601.02716">Paper</a>
+                <a href="https://xodus777.github.io/MorphGS/">Project</a>
+                <a href="https://arxiv.org/abs/2601.02716">Paper</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="glint">
             <a class="pub-thumb" href="https://youngju-na.github.io/GLINT/" tabindex="-1" aria-hidden="true">
-              <img src="resources/paper/glint.png" alt="GLINT preview" loading="lazy" decoding="async">
+              <video src="resources/paper/glint.mp4" poster="resources/paper/glint_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
             </a>
             <div class="pub-body">
-              <p class="pub-venue">CVPR 2026<span class="pub-honor">Oral, Best Paper Award Candidate (Top 1.8%)</span></p>
+              <p class="pub-venue">CVPR 2026<span class="pub-honor">Oral</span><span class="pub-honor">Best Paper Award Candidate (Top 1.8%)</span></p>
               <h3 class="pub-title">GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transport</h3>
               <p class="pub-authors"><b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=ie5ew-IAAAAJ">Jaeseong Yun</a>, <a href="https://scholar.google.com/citations?user=WM2AjCoAAAAJ">Soohyun Ryu</a>, <a href="https://blandocs.github.io/">Hyunsu Kim</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a>, and <a href="https://www.linkedin.com/in/suyong-yeon-89550723/">Suyong Yeon</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://youngju-na.github.io/GLINT/">Project</a>
-                <a class="chip" href="https://arxiv.org/abs/2603.26181">Paper</a>
-                <a class="chip" href="https://github.com/youngju-na/GLINT">Code</a>
+                <a href="https://youngju-na.github.io/GLINT/">Project</a>
+                <a href="https://arxiv.org/abs/2603.26181">Paper</a>
+                <a href="https://github.com/youngju-na/GLINT">Code</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="visual-rrt">
             <a class="pub-thumb" href="https://sgvr.kaist.ac.kr/Visual-RRT/" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/vrrt.png" alt="Visual-RRT preview" loading="lazy" decoding="async">
             </a>
@@ -767,13 +929,13 @@
               <h3 class="pub-title">Visual-RRT: Finding Paths toward Visual-Goals via Differentiable Rendering</h3>
               <p class="pub-authors"><a href="https://sgvr.kaist.ac.kr/member/lee-sebin/">Sebin Lee<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim</a>, <b>Youngju Na</b>, <a href="https://sgvr.kaist.ac.kr/member/woobin-im/">Woobin Im</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a> <span class="note">(<sup>*</sup>Equal contribution)</span></p>
               <p class="pub-links">
-                <a class="chip" href="https://sgvr.kaist.ac.kr/Visual-RRT/">Project</a>
-                <a class="chip" href="https://arxiv.org/abs/2403.07773">Paper</a>
+                <a href="https://sgvr.kaist.ac.kr/Visual-RRT/">Project</a>
+                <a href="https://arxiv.org/abs/2403.07773">Paper</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="aegisrf">
             <a class="pub-thumb" href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/bmvc25_aegisrf.png" alt="AegisRF preview" loading="lazy" decoding="async">
             </a>
@@ -782,14 +944,14 @@
               <h3 class="pub-title">AegisRF: Adversarial Perturbations Guided with Sensitivity for Protecting Intellectual Property of Neural Radiance Fields</h3>
               <p class="pub-authors"><a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://sgvr.kaist.ac.kr/member/yoonki-cho/">Yoonki Cho</a>, <b>Youngju Na</b>, <a href="https://sgvr.kaist.ac.kr/member/junsik-jung/">Junsik Jung</a>, and <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/">Project</a>
-                <a class="chip" href="https://arxiv.org/abs/2510.19371">Paper</a>
-                <a class="chip" href="https://github.com/wkim97/AegisRF">Code</a>
+                <a href="https://sgvr.kaist.ac.kr/~wjkim/AegisRF/">Project</a>
+                <a href="https://arxiv.org/abs/2510.19371">Paper</a>
+                <a href="https://github.com/wkim97/AegisRF">Code</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="share">
             <a class="pub-thumb" href="https://arxiv.org/abs/2505.22978" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/share.png" alt="SHARE preview" loading="lazy" decoding="async">
             </a>
@@ -798,13 +960,13 @@
               <h3 class="pub-title">Pose-Free 3D Gaussian Splatting via Shape-Ray Estimation</h3>
               <p class="pub-authors"><b>Youngju Na<sup>*</sup></b>, <a href="https://sgvr.kaist.ac.kr/member/taeyeon-kim/">Taeyeon Kim<sup>*</sup></a>, <a href="https://sgvr.kaist.ac.kr/member/lee-jumin/">Jumin Lee</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a> <span class="note">(<sup>*</sup>Equal contribution)</span></p>
               <p class="pub-links">
-                <a class="chip" href="https://arxiv.org/abs/2505.22978">Paper</a>
-                <a class="chip" href="https://github.com/youngju-na/SHARE">Code</a>
+                <a href="https://arxiv.org/abs/2505.22978">Paper</a>
+                <a href="https://github.com/youngju-na/SHARE">Code</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="uforecon">
             <a class="pub-thumb" href="https://youngju-na.github.io/uforecon.github.io/" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/uforecon.png" alt="UFORecon preview" loading="lazy" decoding="async">
             </a>
@@ -813,14 +975,14 @@
               <h3 class="pub-title">UFORecon: generalizable sparse-view surface reconstruction from arbitrary and unfavorable sets</h3>
               <p class="pub-authors"><b>Youngju Na</b>, <a href="https://wkim97.github.io/">Woo Jae Kim</a>, <a href="https://qbhan.oopy.io/">Kyu Beom Han</a>, <a href="https://sgvr.kaist.ac.kr/member/suhyeon-ha/">Suhyeon Ha</a>, <a href="https://sgvr.kaist.ac.kr/~sungeui/">Sung-Eui Yoon</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://youngju-na.github.io/uforecon.github.io/">Project</a>
-                <a class="chip" href="https://arxiv.org/abs/2403.05086">Paper</a>
-                <a class="chip" href="https://github.com/Youngju-Na/UFORecon">Code</a>
+                <a href="https://youngju-na.github.io/uforecon.github.io/">Project</a>
+                <a href="https://arxiv.org/abs/2403.05086">Paper</a>
+                <a href="https://github.com/Youngju-Na/UFORecon">Code</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="skd">
             <a class="pub-thumb" href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/skd.png" alt="SKD preview" loading="lazy" decoding="async">
             </a>
@@ -829,12 +991,12 @@
               <h3 class="pub-title">Shared knowledge distillation for robust multi-scale super-resolution networks</h3>
               <p class="pub-authors"><b>Youngju Na<sup>*</sup></b>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim<sup>*</sup></a>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a> <span class="note">(<sup>*</sup>Equal contribution)</span></p>
               <p class="pub-links">
-                <a class="chip" href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526">Paper</a>
+                <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ell2.12526">Paper</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="haze-net">
             <a class="pub-thumb" href="https://arxiv.org/abs/2209.10167" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/haze-net.png" alt="HAZE-Net preview" loading="lazy" decoding="async">
             </a>
@@ -843,13 +1005,13 @@
               <h3 class="pub-title">HAZE-Net: High-frequency attentive super-resolved gaze estimation in low-resolution face images</h3>
               <p class="pub-authors"><a href="https://scholar.google.com/citations?user=PCMjeNUAAAAJ">Jun-Seok Yun</a>, <b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim</a>, <a href="https://scholar.google.com/citations?user=3belJDEAAAAJ">Hyung-Il Kim</a>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://arxiv.org/abs/2209.10167">Paper</a>
-                <a class="chip" href="https://github.com/dbseorms16/HAZE_Net/">Code</a>
+                <a href="https://arxiv.org/abs/2209.10167">Paper</a>
+                <a href="https://github.com/dbseorms16/HAZE_Net/">Code</a>
               </p>
             </div>
           </li>
 
-          <li class="pub">
+          <li class="pub" id="latentgaze">
             <a class="pub-thumb" href="https://arxiv.org/pdf/2209.10171" tabindex="-1" aria-hidden="true">
               <img src="resources/paper/latentgaze.png" alt="LatentGaze preview" loading="lazy" decoding="async">
             </a>
@@ -858,8 +1020,8 @@
               <h3 class="pub-title">Latentgaze: Cross-domain gaze estimation through gaze-aware analytic latent code manipulation</h3>
               <p class="pub-authors"><a href="https://scholar.google.com/citations?user=3lEuZtUAAAAJ">Isack Lee</a>, <a href="https://scholar.google.com/citations?user=PCMjeNUAAAAJ">Jun-Seok Yun</a>, <a href="https://scholar.google.com/citations?user=-CBfXxYAAAAJ">Hee Hyeon Kim</a>, <b>Youngju Na</b>, <a href="https://scholar.google.com/citations?user=e4kpG_4AAAAJ">Seok Bong Yoo</a></p>
               <p class="pub-links">
-                <a class="chip" href="https://arxiv.org/pdf/2209.10171">Paper</a>
-                <a class="chip" href="https://github.com/leeisack/LatentGaze/">Code</a>
+                <a href="https://arxiv.org/pdf/2209.10171">Paper</a>
+                <a href="https://github.com/leeisack/LatentGaze/">Code</a>
               </p>
             </div>
           </li>
@@ -926,6 +1088,19 @@
           </ul>
         </div>
 
+        <div id="experience" class="spec">
+          <h2 class="spec-label">Work Experience</h2>
+          <ul class="spec-list">
+            <li>
+              <div>
+                <p class="item-title">Research Intern, <a href="https://www.naverlabs.com/">NAVER LABS</a></p>
+                <p class="item-sub">Spatial AI team · Advisor: <a href="https://www.linkedin.com/in/suyong-yeon-89550723/">Suyong Yeon</a></p>
+              </div>
+              <span class="item-date">Apr. 2025 – Oct. 2025</span>
+            </li>
+          </ul>
+        </div>
+
         <div id="teaching" class="spec">
           <div>
             <h2 class="spec-label">Teaching</h2>
@@ -975,6 +1150,61 @@
   </footer>
 
   <script>
+    // Light/dark toggle. The choice is remembered in this browser only.
+    (function () {
+      var root = document.documentElement;
+      var meta = document.querySelector('meta[name="theme-color"]');
+      var button = document.querySelector('.theme-toggle');
+
+      function sync() {
+        var light = root.getAttribute('data-theme') === 'light';
+        meta.setAttribute('content', light ? '#ffffff' : '#0b0c0f');
+        button.textContent = light ? 'Dark' : 'Light';
+        button.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+      }
+
+      button.addEventListener('click', function () {
+        var light = root.getAttribute('data-theme') !== 'light';
+        if (light) root.setAttribute('data-theme', 'light');
+        else root.removeAttribute('data-theme');
+        try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+        sync();
+      });
+
+      sync();
+    })();
+
+    // Show or hide the older news items.
+    (function () {
+      var list = document.getElementById('news-list');
+      var button = document.querySelector('.news-toggle');
+
+      button.addEventListener('click', function () {
+        var expanded = list.classList.toggle('is-expanded');
+        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        button.textContent = expanded ? 'Show less' : 'Show all news';
+      });
+    })();
+
+    // Thumbnail videos: play only while on screen, and stay still for reduced-motion users.
+    (function () {
+      var videos = [].slice.call(document.querySelectorAll('.pub-thumb video'));
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (still || !('IntersectionObserver' in window)) {
+        if (still) videos.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) entry.target.play().catch(function () {});
+          else entry.target.pause();
+        });
+      });
+      videos.forEach(function (v) { observer.observe(v); });
+    })();
+
     // Highlight the nav link of the section currently in view.
     (function () {
       var links = [].slice.call(document.querySelectorAll('.nav-links a'));
